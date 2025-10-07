@@ -1,7 +1,9 @@
 import streamlit as st
 from streamlit_option_menu import option_menu
 from common import connect_to_mongodb
-from product_mgt import add_item                                                                                                                                                                                                            
+from product_mgt import product_management
+from stock_mgt import stock_management
+from tracking_reports import tracking_reports
 
 
 def main(username, rights):
@@ -29,27 +31,14 @@ def main(username, rights):
     
     # client_list = []
     if selected=='Product Management':
-        with st.sidebar:
-            pm_select = option_menu(
-                menu_title='Items',
-                options=['Add', 'Edit', 'Remove', 'Assign SKU'],
-                icons=['plus-lg', 'pencil', 'x-lg', 'upc'],
-            )
+        product_management(client)
+
             
     elif selected=='Stock Management':
-        with st.sidebar:
-            sm_select = option_menu(
-                menu_title='Stocks',
-                options=['Add', 'Deduct', 'Adjust'],
-                icons=['plus-lg', 'x-lg', 'pencil']
-            )
+        stock_management(client)
+        
     elif selected=='Tracking & Reports':
-        with st.sidebar:
-            tr_select = option_menu(
-                menu_title='Reports',
-                options=['Current Stock', 'Low Stock', 'Transaction History', 'Inventory Valuation'],
-                icons=['box-seam-fill', 'exclamation-diamond', 'hourglass-split', 'ui-checks']
-            )
+        tracking_reports(client)
 
 
         

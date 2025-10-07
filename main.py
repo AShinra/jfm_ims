@@ -1,7 +1,7 @@
 import streamlit as st
 from common import connect_to_mongodb, get_logo
 from argon2 import PasswordHasher
-from landing import main
+from home import main
 
 
 

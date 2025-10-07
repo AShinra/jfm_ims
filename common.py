@@ -7,7 +7,8 @@ from io import BytesIO
 def connect_to_mongodb():
     try:
         
-        client = MongoClient('mongodb+srv://jeaniemoradillo1_db_user:SHozRooFXX9VRQyr@cluster0.inrodym.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0')
+        # client = MongoClient('mongodb+srv://jeaniemoradillo1_db_user:SHozRooFXX9VRQyr@cluster0.inrodym.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0')
+        client = MongoClient('mongodb+srv://jonpuray:vYk9PVyQ7mQCn0Rj@cluster1.v4m9pq1.mongodb.net/?retryWrites=true&w=majority&appName=Cluster1')
     except Exception as e:
         st.write(e)
 

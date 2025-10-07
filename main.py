@@ -41,10 +41,10 @@ if __name__ == '__main__':
     client = connect_to_mongodb()
     db = client['jfm_ims']
     collection = db['users']
-    document = collection.find_one({'username':st.session_state.username})
+    # document = collection.find_one({'username':st.session_state.username})
     
     if st.session_state.logged_in:
-        main(document['name'], st.session_state.rights)
+        main(st.session_state.username, st.session_state.rights)
         with st.sidebar:
             if st.button('**Log Out**', use_container_width=True):
                 st.session_state.logged_in = False

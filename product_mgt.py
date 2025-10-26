@@ -33,6 +33,11 @@ def product_management():
 def add_item():
     st.subheader('Add Items')
     
+    item_name = st.text_input(
+        label='Item Name',
+        key='item_name'
+    )
+
 
 
 def edit_item():

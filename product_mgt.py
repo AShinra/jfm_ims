@@ -64,7 +64,7 @@ def add_item():
             'item_name':st.session_state['item_name'],
             'size':st.session_state['item_size'],
             'manufacturer':st.session_state['item_manufacturer'],
-            'date_added':date.today()
+            'date_added':(date.today()).isoformat()
         }
 
         collection = common.get_collection('items')

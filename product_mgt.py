@@ -37,7 +37,6 @@ def add_item():
     with cols[0]:
         item_name = st.text_input(
             label='Item Name',
-            width=500,
             key='item_name'
         )
 

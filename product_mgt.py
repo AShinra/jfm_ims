@@ -38,6 +38,7 @@ def product_management(client):
 
 def add_item():
     st.subheader('Add Items')
+    
 
 
 def edit_item():

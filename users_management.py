@@ -1,10 +1,11 @@
 import streamlit as st
-from common import has_upper_and_number, page_title
+from streamlit_option_menu import option_menu
 from argon2 import PasswordHasher
+from common import has_upper_and_number, page_title
 
 def add_user(client):
     # add user
-    db = client.histo
+    db = client.jfm_ims
     users = db.users
 
     ph = PasswordHasher()  # default parameters are sensible; tune if needed
@@ -49,12 +50,15 @@ def add_user(client):
 
 def edit_user(client):
     # edit user
-    db = client.histo
+    db = client.jfm_ims
     users = db.users
 
     # get the users from the db.users
     documents = users.find()
     user_options = [doc['username'] for doc in users.find()]
+
+    # get rights
+    _rights = db.rights
         
     ph = PasswordHasher()  # default parameters are sensible; tune if needed
 
@@ -68,25 +72,32 @@ def edit_user(client):
         )
         for_edit = st.pills(
             label='Edit',
-            options=['Password', 'Username'],
+            options=['Password', 'Username', 'Rights'],
             width='stretch',
             default='Password'
         )
 
         if for_edit=='Password':
             st.text_input(
-                label='New Password',
+                label='**New Password**',
                 type='password',
                 key='new_password'
             )
         elif for_edit=='Username':
             st.text_input(
-                label='New Username',
+                label='**New Username**',
                 key='new_username'
+            )
+        elif for_edit=='Rights':
+            st.selectbox(
+                label='**New Rights**',
+                options=['admin', 'sub-admin', 'user'],
+                key='new_rights'
             )
         
         edit_btn = st.button(
-            label='Edit'
+            label='Edit',
+            use_container_width=True
         )
 
         if edit_btn:
@@ -97,22 +108,39 @@ def edit_user(client):
                     pw_hash = ph.hash(st.session_state.new_password)
                     # Update one document where username = "athan"
                     users.update_one({"username": edit_user}, {"$set": {"password_hash": pw_hash}})
-                    st.success('Password successfully modified')
+                    st.toast('Password successfully modified')
                 else:
-                    st.error('Must contain An uppercase, number and more than 8 characters long')
+                    st.toast('Must contain An uppercase, number and more than 8 characters long')
         
             elif for_edit=='Username':
                 users.update_one({'username': edit_user}, {'$set': {'username':st.session_state.new_username}})
-                st.success('Username successfully modified')
+                st.toast('Username successfully modified')
+            
+            elif for_edit=='Rights':
+                users.update_one({'username': edit_user}, {'$set': {'rights':st.session_state.new_rights}})
+                st.toast('Rights successfully modified')
 
 
 def user_management(client):
-    # user management
-    page_title('User Management')
+    st.title('User Management')
+    cola, colb = st.columns([1, 1])
+    with cola:
+        tr_select = option_menu(
+            menu_title=None,
+            options=['Add', 'Modify'],
+            icons=['plus-lg', 'pencil'],
+            orientation='horizontal',
+            styles={
+                "nav-link": {
+                    "font-size": "16px",
+                    "text-align": "center",
+                    "margin": "0px 10px",
+                    "--hover-color": "#262730"},
+                "nav-link-selected": {
+                    "background-color": "#676b6ee6",  # highlight color
+                    "font-weight": "bold"}})
 
-    tab1, tab2 = st.tabs(['**Add User**', '**Edit User**'])
-
-    with tab1:
+    if tr_select=='Add':
         add_user(client)
-    with tab2:
+    elif tr_select=='Modify':
         edit_user(client)

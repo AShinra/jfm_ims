@@ -1,5 +1,5 @@
 import streamlit as st
-from common import connect_to_mongodb, get_logo
+from common import get_logo, get_collection
 from argon2 import PasswordHasher
 from home import main
 
@@ -38,11 +38,8 @@ if __name__ == '__main__':
         st.session_state.rights = ''
     
     ph = PasswordHasher()
-    client = connect_to_mongodb()
-    db = client['jfm_ims']
-    collection = db['users']
-    # document = collection.find_one({'username':st.session_state.username})
-    
+    user_collection = get_collection('users')
+        
     if st.session_state.logged_in:
         main(st.session_state.username, st.session_state.rights)
         with st.sidebar:
@@ -65,7 +62,7 @@ if __name__ == '__main__':
             )
 
         if submit_btn:
-            doc = collection.find_one({"username": username})
+            doc = user_collection.find_one({"username": username})
             if not doc:
                 st.sidebar.error("No such user")
             else:

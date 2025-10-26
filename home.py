@@ -4,6 +4,7 @@ from common import connect_to_mongodb
 from product_mgt import product_management
 from stock_mgt import stock_management
 from tracking_reports import tracking_reports
+from users_management import user_management
 
 
 def main(username, rights):
@@ -22,12 +23,12 @@ def main(username, rights):
 
         st.sidebar.header(f':red[Welcome :blue[*{username.title()}*]] 👤')
         selected = option_menu(
-            menu_title='JFM Inventory',
+            menu_title='Warehouse Inventory',
             menu_icon='list-columns',
             options=options_list,
             icons=icons_list
         )
-        btn_clearcache = st.button(':orange[**Clear Cache**]', use_container_width=True)
+        btn_clearcache = st.button('**Clear Cache**', use_container_width=True)
     
     # client_list = []
     if selected=='Product Management':
@@ -39,6 +40,9 @@ def main(username, rights):
         
     elif selected=='Tracking & Reports':
         tracking_reports(client)
+    
+    elif selected=='User Management':
+        user_management(client)
 
 
         

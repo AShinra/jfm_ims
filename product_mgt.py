@@ -35,6 +35,7 @@ def add_item():
     cols = st.columns([1,1,1,1])
 
     with cols[0]:
+        st.title('sample')
         item_name = st.text_input(
             label='Item Name',
             key='item_name'

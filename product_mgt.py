@@ -50,6 +50,10 @@ def add_item():
                 label='Manufacturer',
                 key='item_manufacturer'
             )
+        with st.container(border=True):
+            item_add_btn = st.button(
+                label='Add Item'
+            )
 
 
 

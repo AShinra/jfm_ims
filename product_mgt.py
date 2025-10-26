@@ -89,7 +89,7 @@ def add_item():
 
         query = {
             'item_name':st.session_state['item_name'].upper(),
-            'size':f"{st.session_state['item_size']} {st.session_state['item_size']}",
+            'size':f"{st.session_state['item_size']} {st.session_state['unit_size']}",
             'manufacturer':st.session_state['item_manufacturer'].upper()}
 
         if collection.find_one(query):

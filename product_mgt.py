@@ -71,10 +71,9 @@ def add_item():
         collection.insert_one(document)
 
         # clear input fields after adding
-        st.session_state['item_name'] = ''
-        st.session_state['item_size'] = ''
-        st.session_state['item_manufacturer'] = ''
-
+        for key in ['item_name', 'item_size', 'item_manufacturer']:
+            st.session_state[key] = ''
+        
         st.rerun()
 
         

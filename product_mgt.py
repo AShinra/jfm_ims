@@ -35,6 +35,7 @@ def add_item():
     
     item_name = st.text_input(
         label='Item Name',
+        width=500,
         key='item_name'
     )
 

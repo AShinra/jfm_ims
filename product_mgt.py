@@ -35,10 +35,13 @@ def add_item():
     cols = st.columns([1,1,1,1])
 
     with cols[0]:
-        st.subheader('sample')
+        st.subheader('Item Name')
+    
+    with cols[1]:
         item_name = st.text_input(
             label='Item Name',
-            key='item_name'
+            key='item_name',
+            label_visibility='hidden'
         )
 
         item_size = st.text_input(

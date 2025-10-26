@@ -46,6 +46,7 @@ if __name__ == '__main__':
             if st.button('**Log Out**', use_container_width=True):
                 st.session_state.logged_in = False
                 st.rerun()
+                
     else:
         with st.sidebar:
             username = st.text_input(

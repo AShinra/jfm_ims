@@ -31,8 +31,7 @@ def product_management():
 
 
 def add_item():
-    st.subheader('Add Items')
-    cols = st.columns([1,1,1,1])
+    cols = st.columns([1,2,2,2])
 
     with cols[0]:
         st.subheader('Item Name')

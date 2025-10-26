@@ -34,9 +34,6 @@ def product_management():
 
 def add_item():
 
-    if 'item_name' in st.session_state:
-        st.session_state['item_name'] = ''
-    
     cols = st.columns([1,1,1,1])
 
     with cols[0]:
@@ -73,8 +70,15 @@ def add_item():
         collection = common.get_collection('items')
         collection.insert_one(document)
 
-        st.toast('Item added successfully')
-        st.rerun()
+        # clear input fields after adding
+        st.session_state['item_name'] = ''
+        st.session_state['item_size'] = ''
+        st.session_state['item_manufacturer'] = ''
+
+        st.success("✅ Item added successfully!")
+
+        
+        
 
 
 

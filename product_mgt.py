@@ -62,7 +62,7 @@ def add_item():
     if item_add_btn:
         document = {
             'item_name':st.session_state['item_name'],
-            'size':st.session_state['size'],
+            'size':st.session_state['item_size'],
             'manufacturer':st.session_state['item_manufacturer'],
             'date_added':date.today()
         }
@@ -71,7 +71,7 @@ def add_item():
         collection.insert_one(document)
 
         st.session_state.clear()
-        
+
 
 
 

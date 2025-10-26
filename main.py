@@ -7,6 +7,8 @@ from home import main
 
 if __name__ == '__main__':
 
+    st.write(st.secrets['mongodb']['uri'])
+
     hide_streamlit_style = """<style>
     ._profileContainer_gzau3_63{display: none;}
     </style>"""
@@ -46,7 +48,7 @@ if __name__ == '__main__':
             if st.button('**Log Out**', use_container_width=True):
                 st.session_state.logged_in = False
                 st.rerun()
-                
+
     else:
         with st.sidebar:
             username = st.text_input(

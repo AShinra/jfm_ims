@@ -36,8 +36,10 @@ def add_item():
 
     # --- Reset inputs before rendering if requested ---
     if "clear_inputs" in st.session_state and st.session_state.clear_inputs:
-        for key in ['item_name' 'item_manufacturer']:
+        for key in ['item_name', 'item_manufacturer']:
             st.session_state[key] = ''
+        st.session_state['item_size'] = 1
+        st.session_state['unit_size'] = 'GRAMS'
         st.session_state.clear_inputs = False
 
     cols = st.columns([1,1,1,1])

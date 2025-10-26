@@ -40,6 +40,11 @@ def add_item():
             key='item_name'
         )
 
+        item_size = st.text_input(
+            label='Item Size',
+            key='item_size'
+        )
+
 
 
 def edit_item():

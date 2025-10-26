@@ -75,7 +75,7 @@ def add_item():
         st.session_state['item_size'] = ''
         st.session_state['item_manufacturer'] = ''
 
-        st.success("✅ Item added successfully!")
+        st.rerun()
 
         
         

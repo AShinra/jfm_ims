@@ -1,6 +1,6 @@
 import streamlit as st
 from streamlit_option_menu import option_menu
-import common
+from common import get_collection
 from datetime import date
 
 def product_management():
@@ -66,19 +66,24 @@ def add_item():
             )
     
     if item_add_btn:
-        document = {
+
+        collection = get_collection('items')
+
+        query = {
             'item_name':st.session_state['item_name'],
             'size':st.session_state['item_size'],
-            'manufacturer':st.session_state['item_manufacturer'],
-            'date_added':(date.today()).isoformat()
-        }
+            'manufacturer':st.session_state['item_manufacturer']}
 
-        collection = common.get_collection('items')
-        collection.insert_one(document)
+        if collection.find_one(query):
+            st.warning("⚠️ This item already exists!")
+        else:
+            collection.insert_one({
+                **query,
+                'date_added':(date.today()).isoformat()})
 
-        # Flag to clear on next rerun
-        st.session_state.clear_inputs = True
-        st.rerun()
+            # Flag to clear on next rerun
+            st.session_state.clear_inputs = True
+            st.rerun()
 
         
         

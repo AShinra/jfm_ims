@@ -52,7 +52,8 @@ def add_item():
             )
         with st.container(border=True):
             item_add_btn = st.button(
-                label='Add Item'
+                label='Add Item',
+                key='item_add_btn'
             )
 
 

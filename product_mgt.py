@@ -9,7 +9,7 @@ def product_management():
             menu_title=None,
             options=['Add', 'Edit', 'Remove', 'Assign SKU'],
             icons=['plus-lg', 'pencil', 'x-lg', 'upc'],
-            orientation='horizontal',
+            orientation='vertical',
             styles={
                 "nav-link": {
                     "font-size": "16px",

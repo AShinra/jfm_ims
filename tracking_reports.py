@@ -1,7 +1,7 @@
 import streamlit as st
 from streamlit_option_menu import option_menu
 
-def tracking_reports(client):
+def tracking_reports():
     st.title('Tracking & Reports')
     cola, colb = st.columns([1, 1])
     with cola:

@@ -1,12 +1,11 @@
 import streamlit as st
 from streamlit_option_menu import option_menu
 from argon2 import PasswordHasher
-from common import has_upper_and_number, page_title
+from common import has_upper_and_number, page_title, get_collection
 
-def add_user(client):
+def add_user():
     # add user
-    db = client.jfm_ims
-    users = db.users
+    users = get_collection('users')
 
     ph = PasswordHasher()  # default parameters are sensible; tune if needed
     
@@ -48,17 +47,16 @@ def add_user(client):
         st.rerun()
 
 
-def edit_user(client):
+def edit_user():
     # edit user
-    db = client.jfm_ims
-    users = db.users
+    users = get_collection('users')
 
     # get the users from the db.users
     documents = users.find()
     user_options = [doc['username'] for doc in users.find()]
 
     # get rights
-    _rights = db.rights
+    _rights = get_collection('rights')
         
     ph = PasswordHasher()  # default parameters are sensible; tune if needed
 
@@ -121,7 +119,7 @@ def edit_user(client):
                 st.toast('Rights successfully modified')
 
 
-def user_management(client):
+def user_management():
     st.title('User Management')
     cola, colb = st.columns([1, 1])
     with cola:
@@ -141,6 +139,6 @@ def user_management(client):
                     "font-weight": "bold"}})
 
     if tr_select=='Add':
-        add_user(client)
+        add_user()
     elif tr_select=='Modify':
-        edit_user(client)
+        edit_user()

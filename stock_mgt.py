@@ -1,10 +1,7 @@
 import streamlit as st
 from streamlit_option_menu import option_menu
 
-
-
-
-def stock_management(client):
+def stock_management():
     st.title('Stock Management')
     cola, colb = st.columns([1, 1])
     with cola:

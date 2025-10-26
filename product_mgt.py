@@ -1,10 +1,7 @@
 import streamlit as st
 from streamlit_option_menu import option_menu
 
-
-
-
-def product_management(client):
+def product_management():
     st.title('Product Management')
     cola, colb = st.columns([1, 1])
     with cola:
@@ -31,9 +28,6 @@ def product_management(client):
         remove_item()
     if pm_select=='Assign SKU':
         sku()
-
-
-
 
 
 def add_item():

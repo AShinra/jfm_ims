@@ -34,6 +34,12 @@ def product_management():
 
 def add_item():
 
+    # --- Reset inputs before rendering if requested ---
+    if "clear_inputs" in st.session_state and st.session_state.clear_inputs:
+        for key in ['item_name', 'item_size', 'item_manufacturer']:
+            st.session_state[key] = ''
+        st.session_state.clear_inputs = False
+
     cols = st.columns([1,1,1,1])
 
     with cols[0]:
@@ -70,10 +76,8 @@ def add_item():
         collection = common.get_collection('items')
         collection.insert_one(document)
 
-        # clear input fields after adding
-        for key in ['item_name', 'item_size', 'item_manufacturer']:
-            st.session_state[key] = ''
-        
+        # Flag to clear on next rerun
+        st.session_state.clear_inputs = True
         st.rerun()
 
         

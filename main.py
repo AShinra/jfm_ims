@@ -7,8 +7,6 @@ from home import main
 
 if __name__ == '__main__':
 
-    st.write(st.secrets['mongodb']['uri'])
-
     hide_streamlit_style = """<style>
     ._profileContainer_gzau3_63{display: none;}
     </style>"""

@@ -32,7 +32,7 @@ def product_management():
 
 def add_item():
     st.subheader('Add Items')
-    cols = st.columns(4)
+    cols = st.columns([1,1,1,1])
 
     with cols[0]:
         item_name = st.text_input(

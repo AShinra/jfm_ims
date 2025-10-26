@@ -32,23 +32,24 @@ def product_management():
 
 def add_item():
     
-    cols = st.columns([1,1,1,1], border=True)
+    cols = st.columns([1,1,1,1])
 
     with cols[0]:
-        item_name = st.text_input(
-            label='Item Name',
-            key='item_name',
-        )
+        with st.container(border=True):
+            item_name = st.text_input(
+                label='Item Name',
+                key='item_name',
+            )
 
-        item_size = st.text_input(
-            label='Size',
-            key='item_size'
-        )
+            item_size = st.text_input(
+                label='Size',
+                key='item_size'
+            )
 
-        item_manufacturer = st.text_input(
-            label='Manufacturer',
-            key='item_manufacturer'
-        )
+            item_manufacturer = st.text_input(
+                label='Manufacturer',
+                key='item_manufacturer'
+            )
 
 
 

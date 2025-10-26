@@ -49,10 +49,25 @@ def add_item():
                 key='item_name',
             )
 
-            item_size = st.text_input(
-                label='Size',
-                key='item_size'
-            )
+            col1, col2 = st.columns(2)
+            with col1:
+                item_size = st.number_input(
+                    label='Size',
+                    key='item_size'
+                )
+
+            with col2:
+                unit_size = st.selectbox(
+                    label='Unit',
+                    options=[
+                        'GRAMS',
+                        'KG',
+                        'ML',
+                        'LTR',
+                        'OZ',
+                        'GAL',
+                        'SACK'],
+                    key='unit_size')
 
             item_manufacturer = st.text_input(
                 label='Manufacturer',

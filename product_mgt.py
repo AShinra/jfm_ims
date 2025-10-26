@@ -36,8 +36,10 @@ def add_item():
 
     # --- Reset inputs before rendering if requested ---
     if "clear_inputs" in st.session_state and st.session_state.clear_inputs:
-        for key in ['item_name', 'item_size', 'item_manufacturer']:
+        for key in ['item_name' 'item_manufacturer']:
             st.session_state[key] = ''
+        st.session_state['item_size'] = 1
+        st.session_state['unit_size'] = 'GRAMS'
         st.session_state.clear_inputs = False
 
     cols = st.columns([1,1,1,1])
@@ -89,7 +91,7 @@ def add_item():
 
         query = {
             'item_name':st.session_state['item_name'].upper(),
-            'size':st.session_state['item_size'].upper(),
+            'size':f"{st.session_state['item_size']} {st.session_state['item_size']}",
             'manufacturer':st.session_state['item_manufacturer'].upper()}
 
         if collection.find_one(query):

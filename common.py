@@ -7,7 +7,6 @@ from io import BytesIO
 @st.cache_resource
 def get_client():
     try:
-        st.write(st.secrets['mongodb']['uri'])
         return MongoClient(st.secrets['mongodb']['uri'])
     except Exception as e:
         st.write(e)

@@ -56,7 +56,7 @@ def edit_user():
     user_options = [doc['username'] for doc in users.find()]
 
     # get rights
-    _rights = get_collection('rights')
+    # _rights = get_collection('rights')
         
     ph = PasswordHasher()  # default parameters are sensible; tune if needed
 

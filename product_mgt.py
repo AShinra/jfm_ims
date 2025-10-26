@@ -53,7 +53,10 @@ def add_item():
             with col1:
                 item_size = st.number_input(
                     label='Size',
-                    key='item_size'
+                    key='item_size',
+                    min_value=1,
+                    step=1,
+                    format="%d"
                 )
 
             with col2:

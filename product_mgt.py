@@ -71,8 +71,8 @@ def add_item():
 
         query = {
             'item_name':st.session_state['item_name'].upper(),
-            'size':st.session_state['item_size'],
-            'manufacturer':st.session_state['item_manufacturer']}
+            'size':st.session_state['item_size'].upper(),
+            'manufacturer':st.session_state['item_manufacturer'].upper()}
 
         if collection.find_one(query):
             st.warning("⚠️ This item already exists!")

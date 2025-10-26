@@ -41,8 +41,13 @@ def add_item():
         )
 
         item_size = st.text_input(
-            label='Item Size',
+            label='Size',
             key='item_size'
+        )
+
+        item_manufacturer = st.text_input(
+            label='Manufacturer',
+            key='item_manufacturer'
         )
 
 

@@ -70,7 +70,7 @@ def add_item():
         collection = get_collection('items')
 
         query = {
-            'item_name':st.session_state['item_name'],
+            'item_name':st.session_state['item_name'].upper(),
             'size':st.session_state['item_size'],
             'manufacturer':st.session_state['item_manufacturer']}
 

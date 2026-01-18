@@ -23,11 +23,8 @@ def product_management():
                     "background-color": "#676b6ee6",  # highlight color
                     "font-weight": "bold"}})
     with colb:
-        collection = get_collection("items")
-        documents = collection.find({})
-
-        df = pd.DataFrame(documents)
-        st.dataframe(df)
+        ''''''
+        
     
     if pm_select=='Add':
         add_item()
@@ -91,6 +88,13 @@ def add_item():
                 key='item_add_btn',
                 width='stretch'
             )
+            
+    with cols[1]:
+        collection = get_collection("items")
+        documents = collection.find({})
+
+        df = pd.DataFrame(documents)
+        st.dataframe(df)
     
     if item_add_btn:
 

@@ -22,6 +22,12 @@ def product_management():
                 "nav-link-selected": {
                     "background-color": "#676b6ee6",  # highlight color
                     "font-weight": "bold"}})
+    with colb:
+        collection = get_collection("items")
+        documents = collection.find({})
+
+        df = pd.DataFrame(documents)
+        st.dataframe(df)
     
     if pm_select=='Add':
         add_item()
@@ -114,12 +120,6 @@ def add_item():
 
 def edit_item():
     st.subheader('Edit Items')
-
-    collection = get_collection("items")
-    documents = collection.find({})
-
-    df = pd.DataFrame(documents)
-    st.dataframe(df)
 
 def remove_item():
     st.subheader('Remove Items')

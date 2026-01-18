@@ -2,6 +2,7 @@ import streamlit as st
 from streamlit_option_menu import option_menu
 from common import get_collection
 from datetime import date
+import pandas as pd
 
 def product_management():
     st.title('Product Management')
@@ -114,6 +115,11 @@ def add_item():
 def edit_item():
     st.subheader('Edit Items')
 
+    collection = get_collection("items")
+    documents = collection.find({})
+
+    df = pd.DataFrame(documents)
+    st.dataframe(df)
 
 def remove_item():
     st.subheader('Remove Items')

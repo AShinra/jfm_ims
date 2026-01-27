@@ -10,7 +10,55 @@ if __name__ == '__main__':
     hide_streamlit_style = """<style>
     ._profileContainer_gzau3_63{display: none;}
     </style>"""
-    st.markdown(hide_streamlit_style, unsafe_allow_html=True)    
+    st.markdown(hide_streamlit_style, unsafe_allow_html=True)
+
+    st.markdown("""
+        <style>
+        .block-container {
+            padding-top: 1rem;}
+
+        h1, h2, h3, h4, h5, h6 {
+            margin-top: 0px !important;
+            margin-bottom: 0px !important;
+            padding-top: 0px !important;
+            padding-bottom: 0px !important;
+            line-height: 1.1;}
+        
+        /* ---------- TEXTAREA ---------- */    
+        div[data-baseweb="textarea"] textarea {
+                color: #F5F5F5;
+                background-color: #1A1A1A;}
+
+        /* ---------- INPUTBOX ---------- */    
+        /* Input text */
+        div[data-baseweb="input"] input {
+                color: #F5F5F5;
+                background-color: #1A1A1A;}
+
+        /* Placeholder text */
+        div[data-baseweb="input"] input::placeholder {color: #7A7A7A;}
+        
+        /* ---------- SELECTBOX ---------- */
+        div[data-baseweb="select"] > div {
+                background-color: #1A1A1A;
+                color: #F5F5F5;}
+        
+        /* ---------- BUTTON ---------- */
+        div.stButton > button {
+                background-color: #FFC400;
+                color: #111111;
+                border: none;
+                border-radius: 8px;
+                padding: 0.6em 1.2em;
+                font-weight: 600;}
+        
+        /* Hover */
+        div.stButton > button:hover {
+                background-color: #111111;
+                color: #FFC400;}
+
+        </style>
+        """, unsafe_allow_html=True)
 
     st.set_page_config(
         layout="wide",
@@ -25,8 +73,9 @@ if __name__ == '__main__':
     
     try:
         st.sidebar.image(get_logo())
-    except FileNotFoundError:
-        st.sidebar.write("Image file not found. Please check the path.")
+    except Exception as e:
+        st.sidebar.warning("Logo cannot be loaded.")
+        st.exception(e)
 
     if "logged_in" not in st.session_state:
         st.session_state.logged_in = False

@@ -51,42 +51,45 @@ def add_item():
         st.session_state['unit_size'] = 'GRAMS'
         st.session_state.clear_inputs = False
 
-    cols = st.columns([1, 3])
+    cols = st.columns([1.25, 2.75])
 
     with cols[0]:
         with st.container(border=True):
             product_label, product_data = st.columns([3.5, 6.5])
             with product_label:
-                st.write('Product')
+                st.markdown('##### :red[*]Product')
             with product_data:
                 product = st.text_input(
-                    label=':red[*]Product Name',
+                    label='Product Name',
                     label_visibility='collapsed',
-                    key='product_name')
+                    key='product_name',
+                    placeholder='Product Name')
             
             variant_label, variant_data = st.columns([3.5, 6.5])
             with variant_label:    
-                st.write('Variant')
+                st.markdown('##### :red[*]Variant')
             with variant_data:
                 variant = st.text_input(
-                    label=':red[*]Variant',
+                    label='Variant',
                     label_visibility='collapsed',
-                    key='variant')
+                    key='variant',
+                    placeholder='Variant/Flavor')
             
             brand_label, brand_data = st.columns([3.5, 6.5])
             with brand_label:
-                st.write('Brand')
+                st.markdown('##### :red[*]Brand')
             with brand_data:
                 brand = st.text_input(
-                    label=':red[*]Brand Name',
+                    label='Brand Name',
                     label_visibility='collapsed',
-                    key='brand_name')
+                    key='brand_name',
+                    placeholder='Brand Name')
             
             cols1, cols2 = st.columns(2)
             with cols1:
                 size_label, size_data = st.columns([3, 7])
                 with size_label:
-                    st.write('Size')
+                    st.markdown('##### :red[*]Size')
                 with size_data:
                     item_size = st.number_input(
                         label='Size',
@@ -98,7 +101,7 @@ def add_item():
             with cols2:
                 unit_label, unit_data = st.columns([3, 7])
                 with unit_label:
-                    st.write('Unit')
+                    st.markdown('##### :red[*]Unit')
                 with unit_data:
                     unit_size = st.selectbox(
                     label='Unit',
@@ -117,16 +120,17 @@ def add_item():
             
             manufacturer_label, manufacturer_data = st.columns([3.5, 6.5])
             with manufacturer_label:
-                st.write('Manufacturer')
+                st.markdown('##### :red[*]Manufacturer')
             with manufacturer_data:
                 manufacturer = st.text_input(
-                    label=':red[*]Manufacturer',
+                    label='Manufacturer',
                     label_visibility='collapsed',
-                    key='manufacturer')
+                    key='manufacturer',
+                    placeholder='Manufacturers Name')
                 
             maincat_label, maincat_data = st.columns([3.5, 6.5])
             with maincat_label:
-                st.write('Category')
+                st.markdown('##### :red[*]Category')
             with maincat_data:
                 main_category = st.selectbox(
                     label='Main Category',
@@ -158,7 +162,7 @@ def add_item():
 
         
             item_add_btn = st.button(
-                label='Add Item',
+                label='**Add Item**',
                 key='item_add_btn',
                 width='stretch'
             )
@@ -175,6 +179,7 @@ def add_item():
         all_items = []
         for document in documents:
             _items = {}
+            _items['SKU'] = document['sku']
             _items['Product'] = document['product']
             _items['Variant'] = document['variant']
             _items['Brand'] = document['brand']
